@@ -22,12 +22,12 @@ function TodoCreate({ createTodo }) {
     }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-md overflow-hidden py-4 flex gap-4 items-center px-4 mt-8">
-        <span className="inline-block  border-2 w-5 h-5 rounded-full"></span>
+    <form onSubmit={handleSubmit} className="bg-white rounded-md overflow-hidden py-4 flex gap-4 items-center px-4 mt-8 dark:bg-gray-800">
+        <span className="inline-block border w-[26px] h-[24.16px] rounded-[50%]"></span>
         <input
           type="text"
           placeholder="Create a new todo..."
-          className="rounded-md w-full text-gray-400 outline-none font-medium"
+          className="rounded-md w-full text-gray-400 outline-none font-medium dark:bg-gray-800"
           value={titleValue}
           onChange={handleValueChange}
         />

@@ -65,14 +65,10 @@ function App() {
     setItemsLeft(todos.filter(todo => !todo.completed).length);
   }, [todos])
 
-  const clearCompleted = () => {
-    setTodos(todos.filter(todo => !todo.completed));
-  }
+  const clearCompleted = () => setTodos(todos.filter(todo => !todo.completed));
 
-  const handleFilterChange = (e) => {
-    setFilterValue(e.target.value);
-  }
-
+  const handleFilterChange = (e) => setFilterValue(e.target.value);
+  
   useEffect(() => {
     switch (filterValue) {
       case 'All':
@@ -93,7 +89,7 @@ function App() {
 
 
   return (
-    <div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat bg-gray-200 min-h-screen">
+    <div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat bg-gray-200 min-h-screen dark:bg-gray-900">
 
       <Header />
 
@@ -114,6 +110,7 @@ function App() {
 
         <TodoFilter 
           handleFilterChange={handleFilterChange}
+          filterValue={filterValue}
         />
 
       </main>

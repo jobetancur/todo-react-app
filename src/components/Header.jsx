@@ -20,8 +20,8 @@ function Header() {
     }, [theme])
 
   return (
-    <header className="container mx-auto px-4 pt-8">
-        <div className="flex justify-between">
+    <header className="container mx-auto px-4 pt-8 md:max-w-3xl">
+        <div className="flex justify-between md:mt-16">
           <h1 className="text-white text-3xl tracking-[.40em] font-semibold">
             TODO
           </h1>

@@ -119,7 +119,7 @@ function App() {
         <TodoCreate createTodo={ createTodo } />
 
         <TodoList 
-          todos={ filteredTodos() } 
+          todos={ filteredTodos() } // Se envían los todos filtrados para que se muestren en pantalla.
           removeTodo={ removeTodo } 
           upDateTodo={ upDateTodo }
           handleDragEnd={ handleDragEnd }

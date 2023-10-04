@@ -75,22 +75,18 @@ function App() {
 
   const handleFilterChange = (e) => setFilterValue(e.target.value);
   
-  useEffect(() => {
+  const filteredTodos = () => {
     switch (filterValue) {
       case 'All':
-        setTodos(initialState);
-        break;
+        return todos;
       case 'Active':
-        setTodos(initialState.filter(todo => !todo.completed));
-        break;
+        return todos.filter(todo => !todo.completed);
       case 'Completed':
-        setTodos(initialState.filter(todo => todo.completed));
-        break;
+        return todos.filter(todo => todo.completed);
       default:
-        setTodos(initialState);
-        break;
+        return todos;
     }
-  }, [filterValue])
+  }
 
   const handleDragEnd = (result) => {
     if(!result.destination) return;
@@ -123,7 +119,7 @@ function App() {
         <TodoCreate createTodo={ createTodo } />
 
         <TodoList 
-          todos={ todos } 
+          todos={ filteredTodos() } 
           removeTodo={ removeTodo } 
           upDateTodo={ upDateTodo }
           handleDragEnd={ handleDragEnd }
@@ -137,6 +133,7 @@ function App() {
         <TodoFilter 
           handleFilterChange={ handleFilterChange }
           filterValue={ filterValue }
+          
         />
 
       </main>

@@ -1,13 +1,17 @@
 import CheckIcon from "./icons/CheckIcon"
 import CrossIcon from "./icons/CrossIcon"
 
-function TodoItem( { todo, removeTodo, upDateTodo } ) {
+function TodoItem( { todo, removeTodo, upDateTodo, draggableProvider } ) {
 
   return (
-    <article className="flex py-6 gap-4 border-b px-4 dark:border-gray-700">
+    <article className="flex py-6 gap-4 border-b px-4 dark:border-gray-700" 
+      ref={ draggableProvider.innerRef }
+      { ...draggableProvider.draggableProps }
+      { ...draggableProvider.dragHandleProps }
+    >
         <button
-          onClick={() => upDateTodo (todo.id)} 
-          className={ 
+          onClick={() => upDateTodo ( todo.id )} 
+          className={
             `w-6 h-6 rounded-full border ${ todo.completed ? 
               "bg-gradient-to-r from-indigo-500 via-purple-400 to-pink-300 flex justify-center items-center" 
                 : 
@@ -19,7 +23,7 @@ function TodoItem( { todo, removeTodo, upDateTodo } ) {
             todo.completed && <CheckIcon />
           }
         </button>
-        <p className={ 
+        <p className={
           `grow font-medium ${ todo.completed ? 
             "text-gray-300 line-through dark:text-gray-500" 
               : 
@@ -28,7 +32,7 @@ function TodoItem( { todo, removeTodo, upDateTodo } ) {
         >
           { todo.title }
         </p>
-        <button onClick={() => removeTodo (todo.id)} className="flex-none">
+        <button onClick={() => removeTodo ( todo.id )} className="flex-none">
           <CrossIcon />
         </button>
     </article>

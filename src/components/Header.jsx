@@ -25,7 +25,7 @@ function Header() {
           <h1 className="text-white text-3xl tracking-[.40em] font-semibold">
             TODO
           </h1>
-          <button onClick={toggleTheme} className="mr-2">
+          <button onClick={ toggleTheme } className="mr-2">
             {
               theme === 'light' ? <MoonIcon /> : <SunIcon />
             }

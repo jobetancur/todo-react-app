@@ -11,7 +11,7 @@ function TodoFilter({ handleFilterChange, filterValue }) {
         >
           <button 
             value="All" 
-            onClick={handleLocalFilterChange} 
+            onClick={ handleLocalFilterChange } 
             className={ `
               ${ 
                 filterValue === 'All' ? 
@@ -24,7 +24,7 @@ function TodoFilter({ handleFilterChange, filterValue }) {
           </button>
           <button 
             value="Active" 
-            onClick={handleLocalFilterChange} 
+            onClick={ handleLocalFilterChange } 
             className={ `
               ${ 
                 filterValue === 'Active' ? 
@@ -37,7 +37,7 @@ function TodoFilter({ handleFilterChange, filterValue }) {
           </button>
           <button 
             value="Completed" 
-            onClick={handleLocalFilterChange} 
+            onClick={ handleLocalFilterChange } 
             className={ `
               ${ 
                 filterValue === 'Completed' ? 

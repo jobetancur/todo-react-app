@@ -92,7 +92,19 @@ function App() {
     }
   }, [filterValue])
 
-
+  const handleDragEnd = (result) => {
+    if(!result.destination) return;
+  
+    const initialIndex = result.source.index;
+    const finalIndex = result.destination.index;
+    
+    const newTodos = [ ...todos ];  
+    const [ removed ] = newTodos.splice(initialIndex, 1);
+    
+    newTodos.splice(finalIndex, 0, removed);
+    
+    setTodos(newTodos);
+  }
 
   return (
     <div 
@@ -108,22 +120,23 @@ function App() {
 
       <main className="container mx-auto px-4 mt-6 md:max-w-3xl">
 
-        <TodoCreate createTodo={createTodo} />
+        <TodoCreate createTodo={ createTodo } />
 
         <TodoList 
-          todos={todos} 
-          removeTodo={removeTodo} 
-          upDateTodo={upDateTodo}
+          todos={ todos } 
+          removeTodo={ removeTodo } 
+          upDateTodo={ upDateTodo }
+          handleDragEnd={ handleDragEnd }
         />
 
         <TodoComputed 
-          itemsLeft={itemsLeft}
-          clearCompleted={clearCompleted}
+          itemsLeft={ itemsLeft }
+          clearCompleted={ clearCompleted }
         /> 
 
         <TodoFilter 
-          handleFilterChange={handleFilterChange}
-          filterValue={filterValue}
+          handleFilterChange={ handleFilterChange }
+          filterValue={ filterValue }
         />
 
       </main>

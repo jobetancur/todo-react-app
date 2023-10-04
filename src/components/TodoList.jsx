@@ -1,15 +1,44 @@
 import TodoItem from "./TodoItem"
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"
 
-function TodoList({ todos, removeTodo, upDateTodo }) {
+function TodoList({ todos, removeTodo, upDateTodo, handleDragEnd }) {
     
   return (
-    <div className="bg-white rounded-t-md mt-8 dark:bg-gray-800">     
+    <DragDropContext onDragEnd={ handleDragEnd }>
+      <Droppable droppableId="todosDrop">
         {
-            todos.map((todo) => (
-                <TodoItem key={todo.id} todo={todo} removeTodo={removeTodo} upDateTodo={upDateTodo} />
-            ))
+          ( droppableProvider ) => (
+            <div 
+              className="bg-white rounded-t-md mt-8 dark:bg-gray-800"
+              ref={ droppableProvider.innerRef }
+              { ...droppableProvider.droppableProps }
+            >  
+              {
+                todos.map(( todo, index ) => (
+                  <Draggable 
+                    key={ todo.id } 
+                    index={ index }
+                    draggableId={ todo.id.toString() }
+                  >
+                    {
+                      ( draggableProvider ) => (
+                        <TodoItem 
+                          todo={ todo } 
+                          removeTodo={ removeTodo } 
+                          upDateTodo={ upDateTodo }
+                          draggableProvider={ draggableProvider }
+                        />
+                      )
+                    }
+                  </Draggable>
+                ))
+              }
+              { droppableProvider.placeholder }
+            </div>
+          )
         }
-    </div>
+      </Droppable>
+    </DragDropContext>
   )
 }
 
